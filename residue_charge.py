@@ -4,7 +4,7 @@ residue_charge.py - Determine the charge of residues using openbabel
 
 Copyright (C) 2010 by Casper Steinmann (casper.steinmann@gmail.com)
 
-For more information, see <http://www.caspersteinmann.dk/>
+For more information, see <http://pythonchem.blogspot.com/>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
