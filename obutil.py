@@ -11,6 +11,11 @@ def OBMolFromFilename(filename):
   obconv.ReadFile(obmol, filename)
   return obmol
 
+def OBMolToFilename(obmol, filename):
+  obconv = openbabel.OBConversion()
+  obconv.SetOutFormat("pdb")
+  obconv.WriteFile(obmol, filename)
+
 def OBAtomFromIndex(mol, index):
   return mol.GetAtom(index)
 
@@ -19,3 +24,4 @@ def OBSmartMatches(mol, pattern):
   obpat.Init(pattern)
   obpat.Match(mol)
   return [m for m in obpat.GetUMapList()]
+
