@@ -20,6 +20,8 @@ def OBAtomFromIndex(mol, index):
   return mol.GetAtom(index)
 
 def OBSmartMatches(mol, pattern):
+  """This function matches a SMARTS pattern to a molecule
+  """
   obpat = openbabel.OBSmartsPattern()
   obpat.Init(pattern)
   obpat.Match(mol)
