@@ -27,3 +27,23 @@ def OBSmartMatches(mol, pattern):
   obpat.Match(mol)
   return [m for m in obpat.GetUMapList()]
 
+def OBMolMinimize(mol):
+  """Minimize a molecule
+  """
+  ff = openbabel.OBForceField.FindForceField("MMFF94")
+  ff.Setup(mol)
+  ff.ConjugateGradients(100, 1.0e-5)
+  return mol
+
+def OBStructureFromSmiles(smilesstring, filename=None):
+  mol = openbabel.OBMol()
+  obConversion = openbabel.OBConversion()
+  obConversion.SetInAndOutFormats("smi", "pdb")
+  obConversion.ReadString(mol, smilesstring)
+  mol.AddHydrogens() #False, True, 7.4)
+  builder = openbabel.OBBuilder()
+  builder.Build(mol)
+  mol = OBMolMinimize(mol)
+  if filename is None: return mol
+  # save structures in subfolder molecules
+  obConversion.WriteFile(mol, "molecules/%s.pdb" % filename)
